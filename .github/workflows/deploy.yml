@@ -1,25 +1,28 @@
 name: Deploy
-
-# Controls when the workflow will run
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: action/setup-python@v5
+
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          
+
       - uses: withastro/action@v3
         with:
           package-manager: npm
           node-version: 22
           path: ./testmtm
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -28,5 +31,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-      uses: action/deploy-page@v4
-      
+        uses: actions/deploy-pages@v4
