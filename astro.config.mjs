@@ -7,7 +7,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://georgenikabadze-hub.github.io/testmtm/',
-	base: '/testmtm/'
+	base: '/testmtm/',
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{
