@@ -10,10 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: action/setup-python@v5
+        with:
+          python-version: "3.12"
+          
       - uses: withastro/action@v3
         with:
           package-manager: npm
           node-version: 22
+          path: ./testmtm
 
   deploy:
     needs: build
